@@ -49,3 +49,5 @@ yarn lint:fix
 Github Actions se encarga de actualizar el código y reiniciar el servidor cuando se actualiza este repositorio.
 
 Para saltarse el despliegue, incluir en el mensaje `[skip ci]`.
+
+<!-- Prueba de pull request -->
