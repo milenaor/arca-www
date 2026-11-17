@@ -58,12 +58,16 @@ export default defineNuxtConfig({
 
   // Cachés del servidor en disco (sobreviven a reinicios): sitemap, imágenes por registro y la copia de
   // datos de «Visualización y análisis» (server/utils/copiaViz.ts).
-  nitro: {
-    storage: {
-      cache: { driver: 'fs', base: './.data/cache' },
-      data: { driver: 'fs', base: './.data/kv' },
-    },
-  },
+  // En Vercel (solo para la vista previa de revisión) no se puede escribir en disco: allí las cachés van en
+  // memoria y las funciones tienen hasta 60 s, porque el API puede tardar.
+  nitro: process.env.VERCEL
+    ? { vercel: { functions: { maxDuration: 60 } } }
+    : {
+        storage: {
+          cache: { driver: 'fs', base: './.data/cache' },
+          data: { driver: 'fs', base: './.data/kv' },
+        },
+      },
 
   compatibilityDate: '2024-09-06',
 });

@@ -106,3 +106,6 @@ sw.*
 
 # Cachés del servidor (nitro storage)
 .data
+
+# Compilación local para Vercel
+.vercel
